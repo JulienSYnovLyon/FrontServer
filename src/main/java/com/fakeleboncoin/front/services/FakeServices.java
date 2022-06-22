@@ -1,6 +1,7 @@
 package com.fakeleboncoin.front.services;
 
 import com.fakeleboncoin.client.ApiClient;
+import com.fakeleboncoin.client.api.AnnonceControllerApi;
 import com.fakeleboncoin.client.api.UserControllerApi;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Credentials;
@@ -8,7 +9,6 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -21,6 +21,7 @@ public class FakeServices {
     private ApiClient apiClient;
     private ObjectMapper oMapper;
     private UserControllerApi userController;
+    private AnnonceControllerApi annonceController;
     public FakeServices() {
 
         apiClient = new ApiClient();
@@ -78,10 +79,14 @@ public class FakeServices {
 
 
         userController = apiClient.createService(UserControllerApi.class);
+        annonceController = apiClient.createService(AnnonceControllerApi.class);
 
     }
 
     public UserControllerApi getUserController() {
         return userController;
+    }
+    public AnnonceControllerApi getAnnonceController() {
+        return annonceController;
     }
 }
